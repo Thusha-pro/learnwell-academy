@@ -455,21 +455,73 @@
     .success{
       display:none;
       text-align:center;
-      padding:2rem;
+      padding:2.5rem 2rem;
       background:var(--paleGold);
       border-left:4px solid var(--gold);
       margin-top:1.5rem;
     }
     .success.show{display:block;animation:fadeUp 0.6s ease forwards;}
+    .success-icon{
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      background:var(--white);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:0 auto 1.2rem;
+      color:#2E7D32;
+      box-shadow:var(--shadow-sm);
+      animation:popIn 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+    }
+    @keyframes popIn{
+      from{transform:scale(0);opacity:0;}
+      to{transform:scale(1);opacity:1;}
+    }
     .success h3{
       font-family:var(--font-display);
       color:var(--navy);
-      font-size:1.4rem;
-      margin-bottom:0.5rem;
+      font-size:1.5rem;
+      margin-bottom:0.6rem;
+      font-weight:600;
     }
     .success p{
-      font-size:1rem;
+      font-size:1.02rem;
       color:var(--charcoal);
+      line-height:1.65;
+      max-width:480px;
+      margin:0 auto;
+    }
+    .success a{
+      color:var(--navy);
+      border-bottom:1px solid var(--gold);
+      text-decoration:none;
+    }
+
+    /* Error message */
+    .error-msg{
+      display:none;
+      text-align:center;
+      padding:1.75rem;
+      background:#FDECEA;
+      border-left:4px solid #C0392B;
+      margin-top:1.5rem;
+    }
+    .error-msg.show{display:block;animation:fadeUp 0.4s ease forwards;}
+    .error-msg h3{
+      font-family:var(--font-display);
+      color:#C0392B;
+      font-size:1.15rem;
+      margin-bottom:0.4rem;
+    }
+    .error-msg p{
+      font-size:0.95rem;
+      color:var(--charcoal);
+    }
+    .error-msg a{
+      color:#C0392B;
+      font-weight:600;
+      text-decoration:underline;
     }
 
     /* Footer (slim) */
@@ -580,7 +632,19 @@
           <p>Fill in the details below — takes about two minutes</p>
         </div>
 
-        <form id="enquiryForm" onsubmit="handleSubmit(event)">
+        <form
+          id="enquiryForm"
+          name="trial-enquiry"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onsubmit="handleSubmit(event)"
+        >
+          <!-- Hidden inputs required by Netlify Forms -->
+          <input type="hidden" name="form-name" value="trial-enquiry" />
+          <p style="display:none;">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
 
           <!-- Section 1: Parent details -->
           <div class="form-section">
@@ -745,13 +809,23 @@
             </p>
           </div>
 
-          <!-- Success message (hidden until submit) -->
-          <div class="success" id="successMsg">
-            <h3>Thank you — your enquiry has been prepared.</h3>
-            <p>Your email program has opened with the message ready to send. If it didn't open automatically, please email us directly at <a href="mailto:learnwellaca@gmail.com" style="color:var(--navy);font-weight:600;">learnwellaca@gmail.com</a>.</p>
-          </div>
-
         </form>
+
+        <!-- Success message (hidden until submit) -->
+        <div class="success" id="successMsg">
+          <div class="success-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Thank you — your enquiry has been sent.</h3>
+          <p>We've received your details and will respond within 24 hours. Please check your email (and spam folder, just in case) for our reply.</p>
+          <p style="margin-top:1.2rem;">In the meantime, you can also reach us at <a href="mailto:learnwellaca@gmail.com" style="color:var(--navy);font-weight:600;">learnwellaca@gmail.com</a>.</p>
+        </div>
+
+        <!-- Error message (hidden unless there's a network problem) -->
+        <div class="error-msg" id="errorMsg">
+          <h3>Sorry — something went wrong.</h3>
+          <p>We couldn't submit your enquiry. Please try again, or email us directly at <a href="mailto:learnwellaca@gmail.com">learnwellaca@gmail.com</a>.</p>
+        </div>
       </div>
 
     </div>
@@ -764,63 +838,64 @@
   </footer>
 
   <script>
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      const f = e.target;
+      const form = e.target;
+      const btn = form.querySelector('.btn-submit');
+      const successBox = document.getElementById('successMsg');
+      const errorBox = document.getElementById('errorMsg');
 
       // Validate at least one subject selected
-      const subjects = Array.from(f.querySelectorAll('input[name="subjects"]:checked')).map(s => s.value);
+      const subjects = Array.from(form.querySelectorAll('input[name="subjects"]:checked'));
       if (subjects.length === 0) {
         alert('Please select at least one subject of interest.');
         return;
       }
 
-      // Build email body
-      const fd = new FormData(f);
-      const v = (k) => fd.get(k) || '(not provided)';
+      // Disable button + show "sending" state
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.style.cursor = 'wait';
+      const btnLabel = btn.querySelector('span');
+      const originalLabel = btnLabel.textContent;
+      btnLabel.textContent = 'Sending…';
 
-      const subject = encodeURIComponent('Free Trial Lesson Enquiry — ' + v('studentName'));
-      const lines = [
-        'Hello LearnWell Academy,',
-        '',
-        'I would like to enquire about a free trial lesson. My details are below.',
-        '',
-        '— PARENT / GUARDIAN —',
-        'Name:           ' + v('parentName'),
-        'Relation:       ' + v('parentRelation'),
-        'Email:          ' + v('parentEmail'),
-        'Phone:          ' + v('parentPhone'),
-        '',
-        '— STUDENT —',
-        'Name:           ' + v('studentName'),
-        'Year group:     ' + v('studentYear'),
-        'Exam board:     ' + v('examBoard'),
-        'School:         ' + v('currentSchool'),
-        '',
-        '— SUBJECTS OF INTEREST —',
-        subjects.join(', '),
-        '',
-        '— GOALS —',
-        v('goals'),
-        '',
-        '— QUESTIONS —',
-        v('questions'),
-        '',
-        '— PRACTICAL —',
-        'Preferred time: ' + v('preferredTime'),
-        'How heard:      ' + v('howHeard'),
-        '',
-        'Thank you — I look forward to hearing from you.',
-      ];
-      const body = encodeURIComponent(lines.join('\n'));
+      // Hide any previous error
+      if (errorBox) errorBox.classList.remove('show');
 
-      window.location.href = `mailto:learnwellaca@gmail.com?subject=${subject}&body=${body}`;
+      // Build URL-encoded body for Netlify Forms
+      const formData = new FormData(form);
+      const params = new URLSearchParams();
+      // Netlify expects form-name field
+      formData.forEach((value, key) => {
+        // Multi-value (checkboxes) — collect all
+        params.append(key, value);
+      });
 
-      // Show success message
-      document.getElementById('successMsg').classList.add('show');
-      setTimeout(() => {
-        document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 200);
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString(),
+        });
+
+        if (response.ok) {
+          // Hide form, show success
+          form.style.display = 'none';
+          successBox.classList.add('show');
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error('Submission failed: ' + response.status);
+        }
+      } catch (err) {
+        // Re-enable button + show error
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btnLabel.textContent = originalLabel;
+        if (errorBox) errorBox.classList.add('show');
+        else alert('Sorry, something went wrong sending the form. Please email us directly at learnwellaca@gmail.com');
+      }
     }
   </script>
 
