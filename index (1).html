@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LearnWell Academy — premium online tuition in Maths, Physics, Chemistry & Further Maths for Year 9, Year 10, GCSE and A-Level students across the UK. Small groups of 3–5. Weekly exams. Highly qualified UK STEM tutors." />
+  <title>LearnWell Academy · Inspiring Excellence in STEM Tuition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================
+       LEARNWELL ACADEMY — Premium Editorial Theme
+       Palette: deep navy + warm gold + ivory + teal accents
+       ========================================================= */
+    :root {
+      --navy:        #0A2342;
+      --navy-deep:   #061830;
+      --gold:        #C9A961;
+      --gold-soft:   #E4CC8A;
+      --teal:        #2E6171;
+      --teal-deep:   #1F4956;
+      --ivory:       #F7F4ED;
+      --paleGold:    #F5EFE0;
+      --beige:       #E8E4DA;
+      --charcoal:    #2B2B2B;
+      --midGrey:     #6B6B6B;
+      --softGrey:    #B8B5AD;
+      --white:       #FFFFFF;
+
+      --font-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+      --font-serif:   'Cormorant Garamond', Georgia, serif;
+      --font-sans:    'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --shadow-sm:  0 2px 8px rgba(10, 35, 66, 0.06);
+      --shadow-md:  0 8px 24px rgba(10, 35, 66, 0.10);
+      --shadow-lg:  0 20px 60px rgba(10, 35, 66, 0.15);
+      --shadow-xl:  0 30px 80px rgba(10, 35, 66, 0.18);
+
+      --radius-sm: 4px;
+      --radius:    8px;
+      --radius-lg: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--ivory);
+      color: var(--charcoal);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection { background: var(--gold); color: var(--navy); }
+
+    /* ========== Noise overlay for warmth ========== */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(247, 244, 237, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav.scrolled {
+      background: rgba(247, 244, 237, 0.95);
+      border-bottom-color: rgba(201, 169, 97, 0.2);
+      padding: 0.9rem 3rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--navy);
+    }
+    .nav-mark {
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .nav-mark::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+    }
+    .nav-brand:hover .nav-mark { background: var(--navy); color: var(--ivory); }
+    .nav-title {
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-title-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--navy);
+    }
+    .nav-title-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 4px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+    }
+    .nav-links a:not(.nav-cta):hover { color: var(--navy); }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; left: 0; }
+    .nav-cta {
+      background: var(--navy);
+      color: var(--ivory) !important;
+      padding: 0.7rem 1.4rem;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      border: 1px solid var(--navy);
+    }
+    .nav-cta:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy) !important;
+      transform: translateY(-1px);
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 30px;
+      height: 22px;
+      position: relative;
+    }
+    .nav-toggle span {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: var(--navy);
+      transition: all 0.3s ease;
+    }
+    .nav-toggle span:nth-child(1) { top: 0; }
+    .nav-toggle span:nth-child(2) { top: 10px; }
+    .nav-toggle span:nth-child(3) { top: 20px; }
+    .nav-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 10px; }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; }
+    .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg); top: 10px; }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      padding: 8rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--ivory) 0%, var(--paleGold) 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(circle, rgba(201, 169, 97, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(circle, rgba(46, 97, 113, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1;
+      color: var(--navy);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 400;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--charcoal);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: var(--ivory);
+      border: 1px solid var(--navy);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--gold);
+      transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+    }
+    .btn-primary span, .btn-primary svg { position: relative; z-index: 1; transition: color 0.3s; }
+    .btn-primary:hover { border-color: var(--gold); color: var(--navy); }
+    .btn-primary:hover::before { left: 0; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--navy);
+    }
+    .btn-ghost:hover {
+      background: var(--navy);
+      color: var(--ivory);
+    }
+    .btn svg { transition: transform 0.3s ease; }
+    .btn:hover svg { transform: translateX(4px); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(10, 35, 66, 0.12);
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-stat-num em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .hero-stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--midGrey);
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+    .hero-card {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 1rem; left: 1rem; right: 1rem; bottom: 1rem;
+      border: 1px solid rgba(201, 169, 97, 0.4);
+      pointer-events: none;
+    }
+    .hero-card-corner {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .hero-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .hero-card-monogram {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--navy);
+      font-style: italic;
+      font-weight: 500;
+    }
+    .hero-card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .hero-card-equation {
+      font-family: 'Cambria Math', 'Cambria', Georgia, serif;
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      animation: floatEq 4s ease-in-out infinite;
+    }
+    .hero-card-equation .frac {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      font-size: 0.85em;
+      text-align: center;
+    }
+    .hero-card-equation .frac .num { border-bottom: 1.5px solid var(--navy); padding: 0 0.3em; }
+    .hero-card-equation .frac .den { padding: 0 0.3em; }
+    @keyframes floatEq {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    .hero-card-meta {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--teal);
+      letter-spacing: 0.02em;
+    }
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--midGrey);
+    }
+    .hero-card-footer .gold-line {
+      width: 50px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Floating orbiting badges */
+    .hero-badge {
+      position: absolute;
+      background: var(--ivory);
+      padding: 0.9rem 1.2rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: var(--navy);
+      font-weight: 500;
+      animation: floatBadge 5s ease-in-out infinite;
+    }
+    .hero-badge svg { color: var(--gold); flex-shrink: 0; }
+    .hero-badge-1 {
+      top: 8%;
+      left: -10%;
+      animation-delay: 0s;
+    }
+    .hero-badge-2 {
+      bottom: 15%;
+      right: -8%;
+      animation-delay: 1.5s;
+    }
+    .hero-badge-3 {
+      bottom: 35%;
+      left: -12%;
+      animation-delay: 3s;
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+
+    /* ========== MARQUEE ========== */
+    .marquee {
+      background: var(--navy);
+      color: var(--ivory);
+      padding: 1.5rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      animation: scroll 35s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      color: var(--ivory);
+    }
+    .marquee-item em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .marquee-item .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ========== SECTION DEFAULTS ========== */
+    section { position: relative; }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+    .section-header {
+      max-width: 720px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+    .section-header.left { text-align: left; margin: 0 0 4rem; }
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .section-eyebrow::before,
+    .section-eyebrow::after {
+      content: '';
+      width: 25px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .section-header.left .section-eyebrow::after { display: none; }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      color: var(--navy);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .section-lede {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--midGrey);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .section-header.left .section-lede { margin: 0; }
+
+    /* ========== ABOUT SECTION ========== */
+    .about {
+      padding: 8rem 0;
+      background: var(--ivory);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-image {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, var(--paleGold) 0%, var(--beige) 100%);
+      overflow: hidden;
+    }
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem; left: 1.5rem; right: 1.5rem; bottom: 1.5rem;
+      border: 1px solid var(--gold);
+    }
+    .about-image-symbol {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 10rem;
+      color: var(--navy);
+      font-style: italic;
+      opacity: 0.85;
+    }
+    .about-image-symbol-sub {
+      position: absolute;
+      bottom: 3rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--teal);
+      letter-spacing: 0.05em;
+    }
+    .about-image-mark {
+      position: absolute;
+      top: 3rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--midGrey);
+    }
+    .about-content h2 {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      color: var(--navy);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .about-content h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .about-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+    .about-pillars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .pillar {
+      padding: 1.5rem;
+      background: var(--white);
+      border-left: 2px solid var(--gold);
+      transition: all 0.4s ease;
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .pillar-num {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+    .pillar h4 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .pillar p {
+      font-size: 0.9rem;
+      color: var(--midGrey);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ========== SUBJECTS / LEVELS ========== */
+    .subjects {
+      padding: 8rem 0;
+      background: var(--paleGold);
+      position: relative;
+      overflow: hidden;
+    }
+    .subjects::before {
+      content: '∑';
+      position: absolute;
+      top: 10%;
+      right: -2%;
+      font-family: var(--font-display);
+      font-size: 30rem;
+      color: var(--gold);
+      opacity: 0.05;
+      line-height: 1;
+      font-style: italic;
+    }
+    .subjects::after {
+      content: 'π';
+      position: absolute;
+      bottom: 5%;
+      left: -2%;
+      font-family: var(--font-display);
+      font-size: 25rem;
+      color: var(--navy);
+      opacity: 0.04;
+      line-height: 1;
+      font-style: italic;
+    }
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .subject-card {
+      background: var(--ivory);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+      overflow: hidden;
+    }
+    .subject-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .subject-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .subject-card:hover::before { transform: scaleX(1); }
+    .subject-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy);
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s ease;
+    }
+    .subject-card:hover .subject-icon {
+      background: var(--gold);
+      color: var(--navy);
+      transform: rotate(-5deg);
+    }
+    .subject-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .subject-card .level {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .subject-card p {
+      font-size: 0.9rem;
+      color: var(--midGrey);
+      line-height: 1.7;
+    }
+
+    /* Level grid table */
+    .levels-section {
+      margin-top: 5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .levels-table {
+      max-width: 900px;
+      margin: 3rem auto 0;
+      background: var(--ivory);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .levels-row {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(4, 1fr);
+      border-bottom: 1px solid var(--beige);
+      transition: background 0.3s ease;
+    }
+    .levels-row:last-child { border-bottom: none; }
+    .levels-row.head {
+      background: var(--navy);
+      color: var(--ivory);
+    }
+    .levels-row.head .cell {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 1.5rem 1rem;
+    }
+    .levels-row.head .cell:first-child { color: var(--gold); }
+    .levels-row:not(.head):hover { background: var(--paleGold); }
+    .levels-row .cell {
+      padding: 1.4rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+    }
+    .levels-row .cell:first-child {
+      justify-content: flex-start;
+      padding-left: 2rem;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .dash { color: var(--softGrey); font-weight: 300; }
+
+    /* ========== EXAM BOARDS ========== */
+    .boards {
+      padding: 5rem 0;
+      background: var(--navy);
+      color: var(--ivory);
+      text-align: center;
+    }
+    .boards-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .boards-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--ivory);
+      font-weight: 400;
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+    .boards-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5rem;
+      flex-wrap: wrap;
+    }
+    .board-item {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--ivory);
+      letter-spacing: 0.1em;
+      position: relative;
+      padding: 0 1rem;
+      transition: all 0.3s ease;
+    }
+    .board-item:hover { color: var(--gold); transform: scale(1.05); }
+    .board-item + .board-item::before {
+      content: '·';
+      position: absolute;
+      left: -2.7rem;
+      color: var(--gold);
+    }
+
+    /* ========== HOW IT WORKS ========== */
+    .how {
+      padding: 8rem 0;
+      background: var(--ivory);
+      position: relative;
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 4rem;
+      position: relative;
+    }
+    .how-grid::before {
+      content: '';
+      position: absolute;
+      top: 50px;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+    }
+    .step {
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .step-num {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--ivory);
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--navy);
+      font-weight: 500;
+      margin: 0 auto 1.75rem;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+    .step-num::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 169, 97, 0.4);
+    }
+    .step:hover .step-num {
+      background: var(--navy);
+      color: var(--gold);
+      transform: scale(1.05);
+    }
+    .step h4 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+    .step p {
+      font-size: 0.92rem;
+      color: var(--midGrey);
+      line-height: 1.7;
+    }
+
+    /* ========== WEEKLY EXAMS FEATURE ========== */
+    .feature {
+      padding: 8rem 0;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+      color: var(--ivory);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(201, 169, 97, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .feature h2 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.02em;
+    }
+    .feature h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .feature p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(247, 244, 237, 0.85);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .feature-list {
+      list-style: none;
+      display: grid;
+      gap: 1.25rem;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.25rem;
+      background: rgba(247, 244, 237, 0.06);
+      border-left: 2px solid var(--gold);
+      transition: all 0.3s ease;
+    }
+    .feature-list li:hover {
+      background: rgba(247, 244, 237, 0.1);
+      transform: translateX(6px);
+    }
+    .feature-list li svg {
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .feature-list li strong {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--ivory);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .feature-list li span {
+      font-size: 0.92rem;
+      color: rgba(247, 244, 237, 0.7);
+      line-height: 1.6;
+    }
+
+    /* Feature card */
+    .feature-card {
+      background: var(--ivory);
+      color: var(--charcoal);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 1rem; left: 1rem; right: 1rem; bottom: 1rem;
+      border: 1px solid rgba(201, 169, 97, 0.4);
+      pointer-events: none;
+    }
+    .feature-card-head {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--beige);
+    }
+    .feature-card-week {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--navy);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .feature-card-table {
+      display: grid;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .feature-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed var(--beige);
+    }
+    .feature-card-row:last-child { border-bottom: none; }
+    .feature-card-row span:first-child {
+      font-size: 0.9rem;
+      color: var(--charcoal);
+    }
+    .feature-card-row .grade {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .feature-card-row .grade.up { color: #2E7D32; }
+    .feature-card-trend {
+      text-align: center;
+      padding: 1rem;
+      background: var(--paleGold);
+      font-size: 0.85rem;
+      color: var(--navy);
+      font-style: italic;
+      font-family: var(--font-serif);
+    }
+    .feature-card-trend strong { color: #2E7D32; }
+
+    /* ========== TUTORS SECTION ========== */
+    .tutors {
+      padding: 8rem 0;
+      background: var(--paleGold);
+    }
+    .tutors-content {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .tutors-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1.4;
+      color: var(--navy);
+      font-style: italic;
+      font-weight: 400;
+      margin: 3rem 0;
+      position: relative;
+      padding: 0 3rem;
+    }
+    .tutors-quote::before,
+    .tutors-quote::after {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      color: var(--gold);
+      position: absolute;
+      line-height: 1;
+      opacity: 0.4;
+    }
+    .tutors-quote::before {
+      content: '“';
+      top: -2rem;
+      left: -2rem;
+    }
+    .tutors-quote::after {
+      content: '”';
+      bottom: -3rem;
+      right: -2rem;
+    }
+    .tutors-creds {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .cred {
+      padding: 2rem 1.5rem;
+      background: var(--ivory);
+      transition: all 0.4s ease;
+    }
+    .cred:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .cred-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+    .cred h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .cred p {
+      font-size: 0.88rem;
+      color: var(--midGrey);
+      line-height: 1.6;
+    }
+
+    /* ========== CLASS FORMAT ========== */
+    .formats {
+      padding: 8rem 0;
+      background: var(--ivory);
+    }
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+    .format-card {
+      padding: 3rem;
+      background: var(--white);
+      position: relative;
+      transition: all 0.4s ease;
+      border-bottom: 3px solid transparent;
+      overflow: hidden;
+    }
+    .format-card.featured {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+      color: var(--ivory);
+    }
+    .format-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-bottom-color: var(--gold);
+    }
+    .format-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+    }
+    .format-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: inherit;
+    }
+    .format-card.featured h3 { color: var(--ivory); }
+    .format-card:not(.featured) h3 { color: var(--navy); }
+    .format-subhead {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .format-card p {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: inherit;
+      opacity: 0.85;
+    }
+    .format-features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+    }
+    .format-features li {
+      padding: 0.6rem 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    .format-card.featured .format-features li {
+      border-bottom-color: rgba(247, 244, 237, 0.15);
+    }
+    .format-features li:last-child { border-bottom: none; }
+    .format-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* ========== TESTIMONIALS / TRUST ========== */
+    .trust {
+      padding: 6rem 0;
+      background: var(--paleGold);
+      text-align: center;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    .trust-stat {
+      position: relative;
+    }
+    .trust-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .trust-num em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .trust-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--midGrey);
+      margin-top: 0.75rem;
+    }
+
+    /* ========== CTA / CONTACT ========== */
+    .cta {
+      padding: 8rem 0;
+      background: linear-gradient(180deg, var(--ivory) 0%, var(--paleGold) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-card {
+      max-width: 880px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 5rem 4rem;
+      text-align: center;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem; left: 1.5rem; right: 1.5rem; bottom: 1.5rem;
+      border: 1px solid rgba(201, 169, 97, 0.4);
+      pointer-events: none;
+    }
+    .cta-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: var(--navy);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .cta-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .cta-text {
+      font-size: 1.1rem;
+      color: var(--midGrey);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+    .cta-form {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .cta-email-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .cta-email-row input {
+      flex: 1;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--beige);
+      background: var(--ivory);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      transition: border-color 0.3s ease;
+    }
+    .cta-email-row input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .cta-email-row .btn { padding: 1.1rem 1.75rem; }
+    .cta-or {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+      color: var(--midGrey);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .cta-or::before, .cta-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--beige);
+    }
+    .cta-direct {
+      font-size: 0.95rem;
+      color: var(--charcoal);
+    }
+    .cta-direct a {
+      color: var(--navy);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.4rem;
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 0.3s ease;
+    }
+    .cta-direct a:hover { color: var(--gold); }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--navy-deep);
+      color: var(--ivory);
+      padding: 5rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--ivory);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .footer-brand em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .footer-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    .footer-about {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(247, 244, 237, 0.7);
+      max-width: 380px;
+    }
+    .footer-col h5 {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-col li {
+      margin-bottom: 0.85rem;
+    }
+    .footer-col a {
+      color: rgba(247, 244, 237, 0.75);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.3s ease;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(247, 244, 237, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: rgba(247, 244, 237, 0.5);
+    }
+    .footer-bottom-mark {
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-style: italic;
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .nav { padding: 1rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; text-align: center; }
+      .hero-content { display: flex; flex-direction: column; align-items: center; }
+      .hero-eyebrow::before { display: none; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-stats { justify-content: center; }
+      .container { padding: 0 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-image { max-width: 500px; margin: 0 auto; }
+      .subjects-grid { grid-template-columns: repeat(2, 1fr); }
+      .levels-row { grid-template-columns: 1fr 1fr 1fr 1fr 1fr; font-size: 0.85rem; }
+      .levels-row .cell:first-child { padding-left: 1rem; font-size: 1rem; }
+      .how-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 1.5rem; }
+      .how-grid::before { display: none; }
+      .feature-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .formats-grid { grid-template-columns: 1fr; }
+      .tutors-creds { grid-template-columns: 1fr; gap: 1rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .boards-row { gap: 2rem; }
+      .board-item { font-size: 1.5rem; }
+      .board-item + .board-item::before { left: -1.2rem; }
+      .hero-badge-1, .hero-badge-2, .hero-badge-3 { display: none; }
+    }
+    @media (max-width: 640px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0; right: 0;
+        background: var(--ivory);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        transform: translateY(-150%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: var(--shadow-md);
+        align-items: flex-start;
+      }
+      .nav-links.open { transform: translateY(0); }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-stats { flex-direction: column; gap: 1.5rem; }
+      .subjects-grid { grid-template-columns: 1fr; }
+      .levels-row { grid-template-columns: 1fr; gap: 0.25rem; padding: 1rem; text-align: center; }
+      .levels-row .cell { padding: 0.5rem; }
+      .levels-row .cell:first-child { justify-content: center; padding-left: 1rem; border-bottom: 1px solid var(--beige); padding-bottom: 0.75rem; margin-bottom: 0.5rem; }
+      .levels-row.head { display: none; }
+      .levels-row:not(.head) .cell:not(:first-child)::before {
+        content: attr(data-label);
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-right: 0.75rem;
+      }
+      .cta-card { padding: 3rem 1.5rem; }
+      .cta-email-row { flex-direction: column; }
+      .how-grid { grid-template-columns: 1fr; }
+      .tutors-quote { padding: 0 1rem; font-size: 1.3rem; }
+      .tutors-quote::before, .tutors-quote::after { display: none; }
+      .trust-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .trust-num { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============= NAVIGATION ============= -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-brand">
+      <div class="nav-mark">L</div>
+      <div class="nav-title">
+        <span class="nav-title-name">LEARNWELL</span>
+        <span class="nav-title-sub">Academy</span>
+      </div>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#subjects">Subjects</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#formats">Classes</a></li>
+      <li><a href="#contact" class="nav-cta">Free Trial</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============= HERO ============= -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Online Tuition · United Kingdom</div>
+      <h1>Inspiring <em>excellence</em><br />in STEM education.</h1>
+      <p class="hero-sub">
+        Premium online tuition in Mathematics, Physics, Chemistry and Further Mathematics — delivered in small groups of 3 to 5 by experienced UK tutors. From Year 8 through to A-Level.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">
+          <span>Book a Free Trial</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#subjects" class="btn btn-ghost">
+          <span>Explore Subjects</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">3 – <em>5</em></div>
+          <div class="hero-stat-label">Students per group</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">Weekly</div>
+          <div class="hero-stat-label">Assessments</div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><em>3</em> Boards</div>
+          <div class="hero-stat-label">AQA · Edexcel · OCR</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-row">
+          <div class="hero-card-corner">Est. 2026</div>
+          <div class="hero-card-corner" style="text-align:right;">No. 01</div>
+        </div>
+
+        <div class="hero-card-body">
+          <div class="hero-card-monogram">L<span style="color:var(--gold)">W</span></div>
+          <div class="hero-card-equation">
+            ∫
+            <span class="frac">
+              <span class="num">dy</span>
+              <span class="den">dx</span>
+            </span>
+            &nbsp;= ƒ′(x)
+          </div>
+          <div class="hero-card-meta">Inspiring Excellence</div>
+        </div>
+
+        <div class="hero-card-footer">
+          <div>
+            <div class="gold-line"></div>
+            Premium tuition
+          </div>
+          <div style="text-align:right;">
+            <div class="gold-line" style="margin-left:auto;"></div>
+            United Kingdom
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-badge hero-badge-1">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Free trial lesson
+      </div>
+      <div class="hero-badge hero-badge-2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Weekly exams
+      </div>
+      <div class="hero-badge hero-badge-3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Live on Teams
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= MARQUEE ============= -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item"><em>Mathematics</em><span class="dot"></span>Physics<span class="dot"></span><em>Chemistry</em><span class="dot"></span>Further Mathematics<span class="dot"></span><em>AQA</em><span class="dot"></span>Edexcel<span class="dot"></span><em>OCR</em><span class="dot"></span>Year 8 to A-Level<span class="dot"></span><em>Inspiring Excellence</em><span class="dot"></span></div>
+      <div class="marquee-item"><em>Mathematics</em><span class="dot"></span>Physics<span class="dot"></span><em>Chemistry</em><span class="dot"></span>Further Mathematics<span class="dot"></span><em>AQA</em><span class="dot"></span>Edexcel<span class="dot"></span><em>OCR</em><span class="dot"></span>Year 8 to A-Level<span class="dot"></span><em>Inspiring Excellence</em><span class="dot"></span></div>
+    </div>
+  </div>
+
+  <!-- ============= ABOUT ============= -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <div class="about-image-mark">·  Established 2026  ·</div>
+          <div class="about-image-symbol">L<em style="color:var(--gold);font-style:italic;">W</em></div>
+          <div class="about-image-symbol-sub">Inspiring Excellence</div>
+        </div>
+        <div class="about-content reveal reveal-delay-1">
+          <div class="section-eyebrow" style="margin-bottom:1.25rem;">Our Philosophy</div>
+          <h2>A measured approach<br />to <em>academic mastery.</em></h2>
+          <p>
+            LearnWell Academy is a UK-based online tuition centre built on the conviction that every student deserves clarity, structure, and rigour in their STEM education.
+          </p>
+          <p>
+            Our small-group format — never more than five students per class — ensures every learner is seen, heard, and stretched. Combined with weekly assessments and individual progress reviews, our students arrive at examinations confident, prepared, and consistently outperforming their predicted grades.
+          </p>
+          <div class="about-pillars">
+            <div class="pillar">
+              <div class="pillar-num">01</div>
+              <h4>Small Groups</h4>
+              <p>Three to five students per class for genuine personal attention.</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-num">02</div>
+              <h4>Weekly Exams</h4>
+              <p>Regular assessment with detailed marking and progress feedback.</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-num">03</div>
+              <h4>Expert Tutors</h4>
+              <p>STEM specialists from UK universities and schools.</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-num">04</div>
+              <h4>Exam-Board Focus</h4>
+              <p>Tailored to AQA, Edexcel and OCR specifications.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= SUBJECTS ============= -->
+  <section class="subjects" id="subjects">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Our Subjects</div>
+        <h2 class="section-title">Four <em>STEM disciplines.</em><br />Taught with care.</h2>
+        <p class="section-lede">Our tutors specialise in the four cornerstone subjects of UK STEM education — chosen, refined, and delivered with the depth they deserve.</p>
+      </div>
+
+      <div class="subjects-grid">
+        <div class="subject-card reveal reveal-delay-1">
+          <div class="subject-icon">f</div>
+          <h3>Mathematics</h3>
+          <div class="level">Year 8 → A-Level</div>
+          <p>From algebraic foundations to advanced calculus. Building deep mathematical fluency through structured, exam-aligned instruction.</p>
+        </div>
+        <div class="subject-card reveal reveal-delay-2">
+          <div class="subject-icon">Φ</div>
+          <h3>Further Maths</h3>
+          <div class="level">Year 10 & GCSE</div>
+          <p>Extension content beyond standard GCSE — preparing the most ambitious students for A-Level and competitive university entry.</p>
+        </div>
+        <div class="subject-card reveal reveal-delay-3">
+          <div class="subject-icon">ψ</div>
+          <h3>Physics</h3>
+          <div class="level">Year 8 → GCSE</div>
+          <p>From mechanics to electromagnetism. Concept-led teaching with real-world examples and rigorous problem-solving practice.</p>
+        </div>
+        <div class="subject-card reveal reveal-delay-4">
+          <div class="subject-icon">Δ</div>
+          <h3>Chemistry</h3>
+          <div class="level">Year 8 → GCSE</div>
+          <p>Bonding, energetics, organic, inorganic. Building the conceptual frameworks students need for success at every level.</p>
+        </div>
+      </div>
+
+      <div class="levels-section">
+        <div class="section-header reveal" style="margin-bottom:0;">
+          <div class="section-eyebrow">Levels Taught</div>
+          <h2 class="section-title" style="font-size:2rem;">A complete <em>pathway.</em></h2>
+        </div>
+        <div class="levels-table reveal reveal-delay-1">
+          <div class="levels-row head">
+            <div class="cell">Level</div>
+            <div class="cell">Mathematics</div>
+            <div class="cell">Further Maths</div>
+            <div class="cell">Physics</div>
+            <div class="cell">Chemistry</div>
+          </div>
+          <div class="levels-row">
+            <div class="cell">Year 8</div>
+            <div class="cell" data-label="Maths"><span class="check">✓</span></div>
+            <div class="cell" data-label="Further"><span class="dash">—</span></div>
+            <div class="cell" data-label="Physics"><span class="check">✓</span></div>
+            <div class="cell" data-label="Chemistry"><span class="check">✓</span></div>
+          </div>
+          <div class="levels-row">
+            <div class="cell">Year 10</div>
+            <div class="cell" data-label="Maths"><span class="check">✓</span></div>
+            <div class="cell" data-label="Further"><span class="check">✓</span></div>
+            <div class="cell" data-label="Physics"><span class="check">✓</span></div>
+            <div class="cell" data-label="Chemistry"><span class="check">✓</span></div>
+          </div>
+          <div class="levels-row">
+            <div class="cell">GCSE</div>
+            <div class="cell" data-label="Maths"><span class="check">✓</span></div>
+            <div class="cell" data-label="Further"><span class="check">✓</span></div>
+            <div class="cell" data-label="Physics"><span class="check">✓</span></div>
+            <div class="cell" data-label="Chemistry"><span class="check">✓</span></div>
+          </div>
+          <div class="levels-row">
+            <div class="cell">A-Level</div>
+            <div class="cell" data-label="Maths"><span class="check">✓</span></div>
+            <div class="cell" data-label="Further"><span class="dash">—</span></div>
+            <div class="cell" data-label="Physics"><span class="dash">—</span></div>
+            <div class="cell" data-label="Chemistry"><span class="dash">—</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= EXAM BOARDS ============= -->
+  <section class="boards">
+    <div class="container">
+      <div class="boards-eyebrow">Aligned with</div>
+      <div class="boards-title">All major UK examination boards</div>
+      <div class="boards-row">
+        <div class="board-item">AQA</div>
+        <div class="board-item">EDEXCEL</div>
+        <div class="board-item">OCR</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= HOW IT WORKS ============= -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">The Process</div>
+        <h2 class="section-title">From enquiry to <em>excellence,</em><br />in four considered steps.</h2>
+        <p class="section-lede">A simple, transparent journey designed for students and parents who want clarity at every stage.</p>
+      </div>
+
+      <div class="how-grid">
+        <div class="step reveal reveal-delay-1">
+          <div class="step-num">I</div>
+          <h4>Get in touch</h4>
+          <p>Send us an email outlining your child's year group, subjects of interest, and any specific exam-board requirements.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">II</div>
+          <h4>Free Trial Lesson</h4>
+          <p>Your child joins a complimentary class to experience our teaching style and meet their prospective tutor.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-num">III</div>
+          <h4>Personalised Plan</h4>
+          <p>We design a weekly schedule that aligns with your child's exam board, current level, and academic goals.</p>
+        </div>
+        <div class="step reveal reveal-delay-4">
+          <div class="step-num">IV</div>
+          <h4>Weekly Progress</h4>
+          <p>Classes run live on Microsoft Teams, with weekly examinations, marking, and full progress discussions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FEATURE: WEEKLY EXAMS ============= -->
+  <section class="feature">
+    <div class="container">
+      <div class="feature-grid">
+        <div class="reveal">
+          <div class="section-eyebrow" style="color:var(--gold);">Our Difference</div>
+          <h2>Weekly examinations.<br />Genuine <em>accountability.</em></h2>
+          <p>
+            Every student sits a structured assessment each week — marked rigorously by our tutors and reviewed together in class. Parents receive regular progress updates so there are no surprises come exam season.
+          </p>
+
+          <ul class="feature-list">
+            <li>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <strong>Structured weekly tests</strong>
+                <span>Past-paper style questions on the week's topics, mirroring real exam conditions.</span>
+              </div>
+            </li>
+            <li>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <strong>Detailed marking</strong>
+                <span>Each script returned with full working, comments, and improvement points.</span>
+              </div>
+            </li>
+            <li>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <strong>Progress reviews</strong>
+                <span>One-to-one discussion of marks, common errors, and the path forward — every week.</span>
+              </div>
+            </li>
+            <li>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <div>
+                <strong>Parent updates</strong>
+                <span>Regular reports keeping parents informed of trends, achievements, and areas of focus.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="feature-card">
+            <div class="feature-card-head">·  Student Progress Sample  ·</div>
+            <div class="feature-card-week">Week <em style="font-style:italic;color:var(--gold);">VIII</em></div>
+            <div class="feature-card-table">
+              <div class="feature-card-row">
+                <span>Algebra · Quadratics</span>
+                <span class="grade up">A</span>
+              </div>
+              <div class="feature-card-row">
+                <span>Mechanics · Forces</span>
+                <span class="grade up">A*</span>
+              </div>
+              <div class="feature-card-row">
+                <span>Trigonometry</span>
+                <span class="grade">B+</span>
+              </div>
+              <div class="feature-card-row">
+                <span>Sequences</span>
+                <span class="grade up">A</span>
+              </div>
+            </div>
+            <div class="feature-card-trend">
+              <strong>↗</strong>&nbsp; Consistent upward trajectory over 8 weeks.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TUTORS ============= -->
+  <section class="tutors">
+    <div class="container">
+      <div class="tutors-content">
+        <div class="section-eyebrow reveal" style="justify-content:center;">Our Educators</div>
+        <h2 class="section-title reveal reveal-delay-1">Taught by <em>specialists.</em></h2>
+
+        <div class="tutors-quote reveal reveal-delay-2">
+          Our tutors are highly qualified STEM specialists currently working across UK universities and schools — bringing both academic depth and front-line classroom experience to every lesson.
+        </div>
+
+        <div class="tutors-creds">
+          <div class="cred reveal reveal-delay-1">
+            <div class="cred-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <h4>University-Trained</h4>
+            <p>Degrees from leading UK institutions in mathematics and the sciences.</p>
+          </div>
+          <div class="cred reveal reveal-delay-2">
+            <div class="cred-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h4>School Experience</h4>
+            <p>Currently working within UK schools and the wider education sector.</p>
+          </div>
+          <div class="cred reveal reveal-delay-3">
+            <div class="cred-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
+            <h4>Exam-Board Experts</h4>
+            <p>Fluent in the specifications and mark schemes of AQA, Edexcel and OCR.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= CLASS FORMATS ============= -->
+  <section class="formats" id="formats">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Class Format</div>
+        <h2 class="section-title">Small groups,<br /><em>significant</em> outcomes.</h2>
+        <p class="section-lede">Classes are taught online via Microsoft Teams, in small focused groups designed for active engagement and individualised attention.</p>
+      </div>
+
+      <div class="formats-grid">
+        <div class="format-card featured reveal">
+          <div class="format-badge">Recommended</div>
+          <div class="format-subhead">Group Format</div>
+          <h3>Small-Group Tuition</h3>
+          <p>Three to five students per class — the sweet spot for academic depth and personal attention. Students benefit from peer discussion while still receiving individual guidance from their tutor.</p>
+          <ul class="format-features">
+            <li>Three to five students per class</li>
+            <li>Live on Microsoft Teams</li>
+            <li>Weekly examinations included</li>
+            <li>Detailed marking and feedback</li>
+            <li>Regular progress discussions</li>
+            <li>Aligned to AQA, Edexcel, OCR</li>
+          </ul>
+        </div>
+
+        <div class="format-card reveal reveal-delay-2">
+          <div class="format-subhead">Delivery</div>
+          <h3>Live, Online, on Teams</h3>
+          <p>Every lesson runs in real time on Microsoft Teams — a familiar, secure platform used widely in UK schools. No travel, no logistics, just focused learning from anywhere in the UK.</p>
+          <ul class="format-features">
+            <li>Real-time interactive sessions</li>
+            <li>Digital whiteboard and screen-share</li>
+            <li>Recorded for revision (optional)</li>
+            <li>Shared resources and worksheets</li>
+            <li>Accessible across the UK</li>
+            <li>Familiar platform for students</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TRUST / STATS ============= -->
+  <section class="trust">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Built on Principles</div>
+        <h2 class="section-title">A commitment to <em>quality.</em></h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-stat reveal reveal-delay-1">
+          <div class="trust-num">3–<em>5</em></div>
+          <div class="trust-label">Students per group</div>
+        </div>
+        <div class="trust-stat reveal reveal-delay-2">
+          <div class="trust-num"><em>52</em></div>
+          <div class="trust-label">Assessments per year</div>
+        </div>
+        <div class="trust-stat reveal reveal-delay-3">
+          <div class="trust-num"><em>4</em></div>
+          <div class="trust-label">Core STEM subjects</div>
+        </div>
+        <div class="trust-stat reveal reveal-delay-4">
+          <div class="trust-num">100<em>%</em></div>
+          <div class="trust-label">Online via Teams</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= CTA / CONTACT ============= -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="cta-card reveal">
+        <div class="cta-eyebrow">Begin Your Journey</div>
+        <h1 class="cta-title">Book your <em>free trial</em><br />lesson today.</h1>
+        <p class="cta-text">
+          Tell us a little about your child's year group, subjects, and exam board. We'll be in touch within 24 hours to arrange a complimentary trial lesson.
+        </p>
+
+        <form class="cta-form" onsubmit="handleSubmit(event)">
+          <div class="cta-email-row">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit" class="btn btn-primary">
+              <span>Enquire</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </form>
+
+        <div class="cta-or">— Or contact us directly —</div>
+
+        <div class="cta-direct">
+          <a href="mailto:learnwellaca@gmail.com">learnwellaca@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= FOOTER ============= -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Learn<em>Well</em> Academy</div>
+          <div class="footer-tagline">Inspiring Excellence</div>
+          <p class="footer-about">
+            A UK-based online tuition centre offering premium small-group instruction in Mathematics, Physics, Chemistry, and Further Mathematics from Year 8 through to A-Level.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#subjects">Subjects</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#formats">Classes</a></li>
+            <li><a href="#contact">Book a Trial</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:learnwellaca@gmail.com">learnwellaca@gmail.com</a></li>
+            <li><a href="#contact">Free Trial Lesson</a></li>
+            <li><a href="#">Live on Microsoft Teams</a></li>
+            <li><a href="#">United Kingdom</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 LearnWell Academy · United Kingdom</div>
+        <div class="footer-bottom-mark">Inspiring Excellence</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // === Navigation: scroll effect ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+
+    // === Mobile nav toggle ===
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // === Scroll reveal animations ===
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // === Form handler: opens mailto with prefilled message ===
+    function handleSubmit(e) {
+      e.preventDefault();
+      const email = e.target.querySelector('input[type="email"]').value;
+      const subject = encodeURIComponent('Free Trial Lesson Enquiry — LearnWell Academy');
+      const body = encodeURIComponent(
+        `Hello LearnWell Academy,\n\nI'd like to enquire about a free trial lesson.\n\nMy email: ${email}\n\nPlease could you contact me to discuss the following:\n- Student's year group:\n- Subject(s) of interest:\n- Exam board (AQA / Edexcel / OCR):\n- Preferred class times:\n\nThank you.`
+      );
+      window.location.href = `mailto:learnwellaca@gmail.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+</html>
